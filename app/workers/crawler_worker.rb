@@ -103,8 +103,8 @@ class CrawlerWorker
 
 		end
 
-		job.update_attributes(status: "complete")
-
 		NotificationMailer.job_complete(job).deliver
+		job.update_attributes(status: "complete")
+		
 	end
 end
