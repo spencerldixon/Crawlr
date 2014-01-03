@@ -1,8 +1,22 @@
-<h1>Dashboard</h1>
-<p>Welcome <%= @user.email %>!</p>
+<div class="page-header">
+    <h1>Dashboard</h1>
+</div>
 
+<div class="row">
+	<div class="panel panel-info col-lg-12">
+		<h3>News - <%= @news.updated_at.to_formatted_s(:long)%></h3><br>
+		<%= @news.message %>
+	</div>
+</div>
 
-<div class="alert alert-info">
-	<h1>News</h1><br>
-	<%= @news.message %>
+<div class="row">
+	<div class="panel panel-danger col-lg-3">
+		<center><%= gravatar_for(@user, size: 100) %>
+		<h3>Welcome <%= @user.first_name %></h3></center>
+	</div>
+
+	<div class="panel panel-warning col-lg-9">
+		<h3>Watch the Screencasts</h3>
+		<p>Screencasts explain how to use the application and new features as the application is updated. It's an easy way to learn new tricks.
+	</div>
 </div>

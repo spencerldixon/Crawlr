@@ -19,7 +19,7 @@ class JobsController < ApplicationController
 		@job = current_user.jobs.build(job_params)
 
 		if @job.save
-			CrawlerWorker.perform_async(@job.id)
+			CrawlerWorker.new.async.perform(@job.id)
 			flash[:success] = "Job queued successfully"
 			redirect_to jobs_path
 

@@ -1,5 +1,5 @@
 class CrawlerWorker
-	include Sidekiq::Worker
+	include SuckerPunch::Job
 
 	def perform(job_id)
 		job = Job.find(job_id)
@@ -104,5 +104,7 @@ class CrawlerWorker
 		end
 
 		job.update_attributes(status: "complete")
+
+		NotificationMailer.job_complete(job).deliver
 	end
 end
