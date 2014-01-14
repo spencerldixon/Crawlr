@@ -6,6 +6,8 @@ class JobsController < ApplicationController
 
 		if current_user.jobs.any?
 			@jobs = current_user.jobs
+			@jobs_limit = Job.count.to_f / 100
+			@jobs_count = Job.count
 		else
 			@jobs = []
 		end

@@ -3,7 +3,9 @@ class CrawlerWorker
 
 	def perform(job_id)
 		job = Job.find(job_id)
-		job.update_attributes(status: "crawling")
+
+		update_status("crawling", job)
+		#job.update_attributes(status: "crawling")
 
 
 		#add csv to database
@@ -27,7 +29,7 @@ class CrawlerWorker
 
 			#csv << ["Site URL", "Page ID", "Page URI", "Fetched?", "Keyword/Keyphrase", "Instances Found", "Error Message"]
 
-			begin
+		begin
 			Anemone.crawl(url, 
 				:depth_limit => 1, 
 				:obey_robots_txt => true, 
@@ -96,15 +98,24 @@ class CrawlerWorker
 
 		#parsed_file = CSV.parse(file, :headers => true, :skip_blanks => true)
 
-		job.update_attributes(binary_data: parsed_file)
+		#job.update_attributes(binary_data: parsed_file)
 
 		rescue
 			job.update_attributes(status: "failed")
 
 		end
 
-		NotificationMailer.job_complete(job).deliver
-		job.update_attributes(status: "complete")
-		
+		#NotificationMailer.job_complete(job).deliver
+		#job.update_attributes(status: "complete")
+		update_status("complete", job)
+	end
+
+	def update_status(status, job)
+		if status == "complete"
+			NotificationMailer.job_complete(job).deliver
+		end
+
+		job.update_attributes(status: "#{status}")
 	end
 end
+

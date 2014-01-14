@@ -3,6 +3,42 @@
 </div>
 
 <div class="row">
+	<div class="col-lg-3">
+		<center><%= gravatar_for(@user, size: 100) %>
+		<h3>Welcome <%= @user.first_name %></h3>
+		<%= link_to "Log Out", destroy_user_session_path, method: "delete" %> |
+		<%= link_to "Edit my Account", edit_user_registration_path %></center>
+	</div>
+
+	<div class="col-lg-9">
+		<h3>Stats</h3>
+		<strong>Jobs/Limit:</strong> <%= @jobs_count %> / 10,000
+		<h3>News</h3>
+		<p><strong><%= @news.updated_at.to_formatted_s(:long)%></strong><br>
+		<%= @news.message %></p>
+		<h3>Screencasts</h3>
+		<p>Screencasts are a great way to learn practically. Click the links below to learn about the application.</p>
+	</div>
+</div>
+
+
+
+	<!--div class="col-lg-6">
+		<h3>Jobs Capacity</h3>
+		<p>Heroku's free account limits users to 10,000 database rows. This limits the amount of pages that can be crawled to just under 10,000. This bar will show you how many pages are currently being stored. If the count is too high, please delete a site from the 'Sites' page. This will destroy all pages assosciated with this site too and free up space.</p>
+	</div>
+	<div class="col-lg-6">
+		<div class="progress">
+		  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @jobs_limit %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @jobs_limit %>%;">
+		    <span class="sr-only"><%= @jobs_limit %>% Complete</span>
+		  </div>
+		</div>
+		<h4><%= @jobs_count %> of 10,000 pages used.</h4>
+	</div>
+</div>
+
+
+
 	<div class="panel panel-info col-lg-12">
 		<h3>News - <%= @news.updated_at.to_formatted_s(:long)%></h3><br>
 		<%= @news.message %>
@@ -19,4 +55,4 @@
 		<h3>Watch the Screencasts</h3>
 		<p>Screencasts explain how to use the application and new features as the application is updated. It's an easy way to learn new tricks.
 	</div>
-</div>
+</div-->

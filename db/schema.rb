@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103100130) do
+ActiveRecord::Schema.define(version: 20140103131140) do
 
   create_table "announcements", force: true do |t|
     t.string   "message"
@@ -22,11 +22,10 @@ ActiveRecord::Schema.define(version: 20140103100130) do
   create_table "jobs", force: true do |t|
     t.string   "url"
     t.string   "keyword"
-    t.string   "status",      default: "pending"
+    t.string   "status",     default: "pending"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.binary   "binary_data"
   end
 
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id"
