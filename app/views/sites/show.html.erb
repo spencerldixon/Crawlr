@@ -1,0 +1,53 @@
+<div class="page-header">
+    <h1><%= @site.url %></h1>
+</div>
+
+
+<div class="alert alert-success">
+	<div class="row">
+	<div class="col-lg-3">
+		<h1 style="font-size: 120px;">86%</h1>
+	</div>
+
+	<div class="col-lg-4">
+		<h3>Summary</h3>
+		Pages Crawled:<br>
+		Total Crawl Time:<br>
+		Pages Passed:<br>
+		Pages Failed:
+	</div>
+
+	<div class="col-lg-5">
+		<h3>What we tested for...</h3>
+		<ol>
+			<li>Presence generic GPT or GAM tags anywhere on the page</li>
+			<li>Unique presence of the code <%= @site.urn %>_PB in the head</li>
+			<li>Unique presence of the code <%= @site.urn %>_PA in the head</li>
+			<li>Unique presence of the code <%= @site.urn %>_PB in the body</li>
+			<li>Unique presence of the code <%= @site.urn %>_PA in the body</li>
+		</ol>
+	</div>
+</div>
+</div>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Page ID</th>
+			<th>URL</th>
+			<th>Passed</th>
+			<th>Error Message</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @site.pages.each do |page|%>
+			<tr>
+				<td><%= page.id %></td>
+				<td><%= page.uri %></td>
+				<td><%= page.passed %></td>
+				<td><%= page.error_message %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

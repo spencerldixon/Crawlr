@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  urn: MyString
+  user_id: 1
+  crawl_time: 1.5
+
+two:
+  url: MyString
+  urn: MyString
+  user_id: 1
+  crawl_time: 1.5

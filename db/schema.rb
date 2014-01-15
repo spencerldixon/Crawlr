@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140103131140) do
+ActiveRecord::Schema.define(version: 20140115155728) do
 
   create_table "announcements", force: true do |t|
     t.string   "message"
@@ -34,6 +34,30 @@ ActiveRecord::Schema.define(version: 20140103131140) do
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pages", force: true do |t|
+    t.integer  "site_id"
+    t.boolean  "passed"
+    t.string   "error_message"
+    t.boolean  "basic_test"
+    t.boolean  "head_banner"
+    t.boolean  "head_mediabar"
+    t.boolean  "body_banner"
+    t.boolean  "body_mediabar"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "uri"
+  end
+
+  create_table "sites", force: true do |t|
+    t.string   "url"
+    t.string   "urn"
+    t.integer  "user_id"
+    t.float    "crawl_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "status",     default: "pending"
   end
 
   create_table "users", force: true do |t|

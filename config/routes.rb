@@ -3,6 +3,7 @@
   root 'dashboard#index'
   resources :dashboard, only: [:index]
   resources :jobs, only: [:index, :new, :create, :destroy]
+  resources :sites, only: [:index, :new, :create, :destroy, :show]
   resources :admin, only: [:index]
 
 

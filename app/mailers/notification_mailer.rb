@@ -9,4 +9,13 @@ class NotificationMailer < ActionMailer::Base
   		subject: "Your Crawl has Completed!",
   		from: "spencer.dixon@fendixmedia.co.uk"
   end
+
+  def site_complete(site)
+  	@user = site.user
+  	@site = site
+
+  	mail to: site.user.email,
+  		subject: "Your Crawl has Completed!",
+  		from: "spencer.dixon@fendixmedia.co.uk"
+  end
 end
