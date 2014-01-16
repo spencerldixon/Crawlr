@@ -38,7 +38,7 @@
 				<td><%= site.url %></td>
 				<td><span class="label label-<%= alert(site.status) %>"><%= site.status %></span></td>
 				<td></td>
-				<td></td>
+				<td><%= ChronicDuration.output(site.crawl_time.to_i, :format => :chrono) %></td>
 				<% if site.status == "complete" %>
 					<td><%= link_to "View", site %></td>
 					<% else %>

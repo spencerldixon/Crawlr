@@ -106,6 +106,5 @@ class CrawlerWorker
 		job.update_attributes(status: "#{status}")
 	end
 
-	def 
 end
 

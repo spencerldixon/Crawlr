@@ -5,16 +5,26 @@
 
 <div class="alert alert-success">
 	<div class="row">
-	<div class="col-lg-3">
-		<h1 style="font-size: 120px;">86%</h1>
+	<div class="col-lg-4">
+		<h1 style="font-size: 110px;"><%= @coverage.round(2) %>%</h1>
 	</div>
 
-	<div class="col-lg-4">
+	<div class="col-lg-3">
 		<h3>Summary</h3>
-		Pages Crawled:<br>
-		Total Crawl Time:<br>
-		Pages Passed:<br>
-		Pages Failed:
+
+		<div class="col-lg-6">
+		Pages Crawled<br>
+		Crawl Time<br>
+		Pages Passed<br>
+		Pages Failed
+		</div>
+
+		<div class="col-lg-6">
+			<%= @site.pages.count %><br>
+			<%= ChronicDuration.output(@site.crawl_time.to_i, :format => :chrono) %><br>
+			<%= @site.pages.where(:passed => true).count %><br>
+			<%= @site.pages.where(:passed => false).count %>
+		</div>
 	</div>
 
 	<div class="col-lg-5">
@@ -45,7 +55,7 @@
 			<tr>
 				<td><%= page.id %></td>
 				<td><%= page.uri %></td>
-				<td><%= page.passed %></td>
+				<td><span class="label label-<%= alert(page.passed) %>"><%= page.passed %></span></td>
 				<td><%= page.error_message %></td>
 			</tr>
 		<% end %>

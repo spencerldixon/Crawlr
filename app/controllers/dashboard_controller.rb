@@ -5,8 +5,8 @@ class DashboardController < ApplicationController
 	def index
 		@user = current_user
 		@news = News.last
-		@jobs_limit = Job.count.to_f / 100
-		@jobs_count = Job.count
+		@crawl_limit = Page.count.to_f / 100
+		@crawl_count = Page.count
 		# @sites = Sites.count
 	end
 end

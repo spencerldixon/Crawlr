@@ -26,6 +26,7 @@ class SitesController < ApplicationController
 
 	def show
 		@site = Site.find(params[:id])
+		@coverage = @site.pages.where(:passed => true).count.to_f / @site.pages.count.to_f * 100
 	end
 
 	def destroy
