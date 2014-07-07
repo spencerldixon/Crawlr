@@ -1,6 +1,7 @@
-Hello <%= @user.first_name %>!
+Hello <%= @user.first_name %>,
 
-Your crawl on the website <%= @site.url %> has completed.
+Your crawl on the website <%= @site.url %> has completed, crawling a total of <%= @site.pages.count %> in <%= ChronicDuration.output(@site.crawl_time.to_i, :format => :long) %>.
+
 Please login to view the report.
 
 Kind Regards,

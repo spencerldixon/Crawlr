@@ -1,4 +1,5 @@
  Crawlr::Application.routes.draw do
+  get 'users/sign_up' => redirect('users/sign_in')
   devise_for :users
   root 'dashboard#index'
   resources :dashboard, only: [:index]

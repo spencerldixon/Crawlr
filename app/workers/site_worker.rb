@@ -27,38 +27,47 @@ class SiteWorker
 						  	page = site.pages.build(uri: "#{anemonepage.url.to_s}")
 
 						  	#puts "Testing Head..."
-							#head_code = doc.css('head').inner_html
+							head_code = doc.css('head').inner_html
+							puts head_code
+
+							#puts head_code
 
 							# AT1
 							#puts "  Testing head banner..."
-							#t2 = analyse(head_code.scan("#{urn}_PB").length)
+							t1 = head_code.scan("#{urn}").length
+							page.update_attributes(head_banner: analyse(t1))
+
+							#puts t1
 
 							# AT2
 							#puts "  Testing head mediabar..."
-							#t2 = analyse(head_code.scan("#{urn}_PA").length)
+							#t2 = head_code.scan("#{urn}").length
+							#page.update_attributes(head_mediabar: analyse(t2))
+
+							#puts t2
 
 							#puts "Testing Body..."
 							body_code = doc.css('body').inner_html
 
 							# AT3
 							#puts "  Testing body leaderboard"
-							error = body_code.scan("#{urn}_PB").length
-
-							page.update_attributes(error_message: error)
+							t3 = body_code.scan("#{urn}").length
+							page.update_attributes(body_banner: analyse(t3))
 								      
 							# AT4
 							#puts "  Testing body mediabar..."
-							#t4 = analyse(body_code.scan("#{urn}_PA").length)
+							#t4 = body_code.scan("#{urn}").length
+							#page.update_attributes(body_mediabar: analyse(t4))
 
-							#puts t1
-							#puts t2
-							#puts t3
-							#puts t4
 
-							page.update_attributes(passed: true)
+							#if analyse(t1) == true && analyse(t2) == true && analyse(t3) == true && analyse(t4) == true
+							if analyse(t1) == true && analyse(t3) == true	
+								page.update_attributes(passed: true)
+							else
+								page.update_attributes(passed: false)
+							end
 
-							#puts page
-
+							#page.update_attributes(error_message: "#{head_code} T1: #{t1}, T2: #{t2}, T3: #{t3}, T4: #{t4}")
 
 					elsif anemonepage.not_found?
 							page.update_attributes(passed: false, error_message: "404 Received. The page could not be found.")
@@ -85,23 +94,25 @@ class SiteWorker
 
 	# Methods
 	def update_status(status, site)
+		site.update_attributes(status: "#{status}")
+
 		if status == "complete"
 			NotificationMailer.site_complete(site).deliver
 		end
-
-		site.update_attributes(status: "#{status}")
 	end
 
 	def analyse(instances)
 	    case instances
-		    when 1
-		      true
-		    when 0
-		      false
-		    when 2
-		      false # (Initially marked as failed, however some sites may have more than one orientation of ad unit
-		    else
-		      false #Far too many instances
+	    when 0
+	    	false
+		when 1
+			true
+	    when 2
+	    	true
+	    when 3
+	    	true
+	    else
+	    	false
 	    end
 	end 
 end

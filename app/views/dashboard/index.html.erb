@@ -11,33 +11,49 @@
 	</div>
 
 	<div class="col-lg-9">
-		<h3>Stats</h3>
-		<div class="col-lg-3">
-			<strong>Crawl Limit:</strong>
-		</div>
-
-		<div class="col-lg-9">
-			<div class="progress">
-			  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @crawl_limit %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @crawl_limit %>%;">
-			    <span class="sr-only"><%= @crawl_limit %>% Complete</span>
-			  </div>
+		<div class="row">
+			<h3>Stats</h3>
+			<div class="col-lg-3">
+				<strong>Sites:</strong>
 			</div>
-			<%= @crawl_count %> of 10,000 pages used.
+
+			<div class="col-lg-9">
+				<%= @sites %>
+			</div>
+		</div>
+		<br>
+
+		<div class="row">
+			<div class="col-lg-3">
+				<strong>Crawl Limit:</strong>
+			</div>
+
+			<div class="col-lg-9">
+				<div class="progress">
+				  <div class="progress-bar" role="progressbar" aria-valuenow="<%= @crawl_limit %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @crawl_limit %>%;">
+				    <span class="sr-only"><%= @crawl_limit %>% Complete</span>
+				  </div>
+				</div>
+				<small><%= @crawl_count %> of 10,000 pages used.</small>
+			</div>
 		</div>
 
-<br><br>
-		<h3>News</h3>
+		<div class="row">
+			<h3>News</h3>
 			<div class="col-lg-3">
 				<p><strong><%= @news.updated_at.to_formatted_s(:long)%></strong><br>
 			</div>
 			<div class="col-lg-9">
 				<%= @news.message %></p>
 			</div>
+		</div>
 
-<br><br>
-		<h3>Screencasts</h3>
-		<div class="col-lg-12">
-			<p>Screencasts are a great way to learn practically. Click the links below to learn about the application.</p>
+
+		<div class="row">
+			<h3>Screencasts</h3>
+			<div class="col-lg-12">
+				<p>Screencasts are a great way to learn practically. Click the links below to learn about the application.</p>
+			</div>
 		</div>
 	</div>
 </div>

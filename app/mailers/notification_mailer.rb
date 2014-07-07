@@ -15,7 +15,7 @@ class NotificationMailer < ActionMailer::Base
   	@site = site
 
   	mail to: site.user.email,
-  		subject: "Your Crawl has Completed!",
+  		subject: "Your Crawl has Completed",
   		from: "spencer.dixon@fendixmedia.co.uk"
   end
 end

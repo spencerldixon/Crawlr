@@ -14,4 +14,20 @@ module SitesHelper
 			"danger"
 		end
 	end
+
+	def results_style(coverage)
+		if coverage > 70
+			"success"
+		else
+			"danger"
+		end
+	end
+
+	def glyphicon(boolean)
+		if boolean == true
+			"glyphicon glyphicon-ok"
+		else
+			"glyphicon glyphicon-remove"
+		end
+	end
 end

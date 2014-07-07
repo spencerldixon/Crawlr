@@ -4,6 +4,8 @@ class SitesController < ApplicationController
 	def index
 		@user = current_user
 		@sites = Site.all
+		@crawl_limit = Page.count.to_f / 100
+		@crawl_count = Page.count
 	end
 
 	def new

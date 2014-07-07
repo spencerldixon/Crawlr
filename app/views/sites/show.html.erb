@@ -3,7 +3,7 @@
 </div>
 
 
-<div class="alert alert-success">
+<div class="alert alert-<%= results_style(@coverage) %>">
 	<div class="row">
 	<div class="col-lg-4">
 		<h1 style="font-size: 110px;"><%= @coverage.round(2) %>%</h1>
@@ -46,6 +46,10 @@
 			<th>Page ID</th>
 			<th>URL</th>
 			<th>Passed</th>
+			<th>Head Banner</th>
+			<th>Head Mediabar</th>
+			<th>Body Banner</th>
+			<th>Body Mediabar</th>
 			<th>Error Message</th>
 		</tr>
 	</thead>
@@ -54,8 +58,12 @@
 		<% @site.pages.each do |page|%>
 			<tr>
 				<td><%= page.id %></td>
-				<td><%= page.uri %></td>
+				<td><a href="<%= page.uri %>"><%= page.uri %></a></td>
 				<td><span class="label label-<%= alert(page.passed) %>"><%= page.passed %></span></td>
+				<td><span class="<%= glyphicon(page.head_banner) %>"></span></td>
+				<td><span class="<%= glyphicon(page.head_mediabar) %>"></span></td>
+				<td><span class="<%= glyphicon(page.body_banner) %>"></span></td>
+				<td><span class="<%= glyphicon(page.body_mediabar) %>"></span></td>
 				<td><%= page.error_message %></td>
 			</tr>
 		<% end %>

@@ -7,6 +7,6 @@ class DashboardController < ApplicationController
 		@news = News.last
 		@crawl_limit = Page.count.to_f / 100
 		@crawl_count = Page.count
-		# @sites = Sites.count
+		@sites = Site.count
 	end
 end

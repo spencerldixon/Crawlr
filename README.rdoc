@@ -1,28 +1,14 @@
-== README
+== Crawlr
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This was developed for our network development team. The idea was that they could enter a URL and a unique reference number that we use internally within our code. The application would then queue a job to crawl the pages looking for script tags containing the reference number and returning a page of the results.
 
-Things you may want to cover:
+The whole thing was designed to only store 10,000 records (heroku free limit) and push to Sucker Punch for background jobs as this doesn't require a separate worker dyno on heroku. It can computer the whole thing on a free tier dyno. 
 
-* Ruby version
+Gems Used:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Sucker Punch (Background Jobs)
+* Foreman (To start the background worker at the same time as the rails app)
+* Anemone (To iterate/crawl through every page of a website)
+* Nokogiri (To scrape the source and analyse)
+* Devise (Authentication)
+* PostgreSQL (Database)
